@@ -1,28 +1,21 @@
 import React from "react";
-import Img from "../../assets/images/camaracel.jpg";
+import Img from "../../assets/images/chino1.jpg";
 
+import "./banner.css";
 
 export const Banner = () => {
   return (
     <>
-      <div
-        id="carouselExampleCaptions"
-        className="carousel slide"
-        data-bs-ride="carousel"
-      >
-       
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img src={Img} className="img-fluid w-100" style={{height:300}} alt="..." />
-            <div className="carousel-caption ">
-              <h5>Hola!! </h5>
-              <p>
-                ...
-              </p>
-            </div>
-          </div>
+      <div className="card text-white">
+        <img src={Img} className="card-img" alt="Persona agachada entre plantas" />
+        <div className="card-img-overlay d-flex ">
+        <div className='text-wrap'>
+          <h5 className="card-title text-center"><strong>Chino Mangiantini</strong></h5>
+          <p className="card-text ">
+            Filmmaker,Cinematographer,Storyteller,Podcaster
+          </p>
         </div>
-        
+        </div>
       </div>
     </>
   );

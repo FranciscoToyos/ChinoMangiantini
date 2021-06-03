@@ -1,3 +1,15 @@
 img {
     height: 18rem;
 }
+source{
+    height:30rem;
+}
+.card-img-overlay{
+    align-items:center;
+    justify-content:center;
+}
+
+.card-title{
+    text-decoration: none;
+    
+}

@@ -8,6 +8,7 @@ import ContenidoState from '../context/contenido/ContenidoState'
 import { Navigator } from "./Navigator/Navigator";
 
 // Pages
+import { AdminPanel } from "../Pages/AdminPanel";
 import { Cinema } from "../Pages/Cinema";
 import { Directing } from "../Pages/Directing";
 import { Home } from "../Pages/Home";
@@ -26,6 +27,9 @@ function App() {
       <Router>
         <Navigator />
       <ContenidoState>
+      <Switch>
+        <Route path="/admin" component={AdminPanel}/>
+      </Switch>
         <Switch>
           <Route path="/podcast" component={Podcast} />
         </Switch>
