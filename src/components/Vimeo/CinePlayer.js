@@ -3,7 +3,7 @@ import ContenidoContext from "../../context/contenido/ContenidoContext";
 
 export const CinePlayer = () => {
 
-    const { contenido, getContenidoCinema } = useContext(ContenidoContext);
+    const { contenidos, getContenidoCinema } = useContext(ContenidoContext);
 
     useEffect(() => {
         getContenidoCinema();
@@ -12,7 +12,7 @@ export const CinePlayer = () => {
 
     return (
         <>
-      {contenido.map((cont) => (
+      {contenidos.map((cont) => (
         <div
           className=" embed-responsive embed-responsive-16by9 mb-3 container mt-3 border"
           key={cont._id}

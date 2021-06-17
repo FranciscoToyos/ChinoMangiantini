@@ -39,14 +39,14 @@ export default (state, action) => {
             }
         case DELETE_CONTENIDO:
             return {
-                ...state,
-                contenido:state.contenido.filter(cont => cont._id  !== action.payload),
+                // ...state,
+                contenido:state.contenido.filter(cont => cont.id  !== action.payload),
                 
             }
         case CREAR_CONTENIDO:
             return {
                 ...state,
-                contenido: [...state.contenido, action.payload]
+                contenido:([...state.contenido, action.payload.contenido])
             }
         default:
             return state

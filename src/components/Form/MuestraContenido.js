@@ -2,18 +2,13 @@ import React, { useEffect, useContext } from "react";
 import ContenidoContext from "../../context/contenido/ContenidoContext";
 
 export const MuestraContenido = () => {
-  const { contenido, getContenido, deleteContenido } = useContext(ContenidoContext);
-
-
+  const { contenidos, getContenido, deleteContenido } =
+    useContext(ContenidoContext);
 
   useEffect(() => {
     getContenido();
-    deleteContenido();
-    
-  }, [])
-  console.log()
-  
-  
+  }, []);
+  console.log();
 
   return (
     <>
@@ -29,8 +24,8 @@ export const MuestraContenido = () => {
                 <th scope="col">Eliminar o Editar</th>
               </tr>
             </thead>
-            {contenido.length > 0 ? (
-              contenido.map((conts) => (
+            {contenidos.length > 0 ? (
+              contenidos.map((conts) => (
                 <tbody key={conts._id}>
                   <tr>
                     <th scope="row"> {conts._id}</th>
@@ -39,7 +34,6 @@ export const MuestraContenido = () => {
                     <td>{conts.seccion}</td>
                     <td>
                       <button
-                        
                         onClick={() => deleteContenido(conts._id)}
                         type="button"
                         className="btn btn-danger  mr-2"
@@ -54,9 +48,12 @@ export const MuestraContenido = () => {
                 </tbody>
               ))
             ) : (
-              <h4 className="text-center mt-2 "> No hay contenido...</h4>
-            )
-            }
+              <tfoot>
+                <tr>
+                  <h4 className="text-center mt-2 "> No hay contenido...</h4>
+                </tr>
+              </tfoot>
+            )}
           </table>
         </div>
       </div>

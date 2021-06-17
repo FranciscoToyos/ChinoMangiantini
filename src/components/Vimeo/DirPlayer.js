@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import ContenidoContext from "../../context/contenido/ContenidoContext";
 
 export const DirPlayer = () => {
-  const { contenido, getContenidoDirecting } = useContext(ContenidoContext);
+  const { contenidos, getContenidoDirecting } = useContext(ContenidoContext);
 
   useEffect(() => {
     getContenidoDirecting();
@@ -11,7 +11,7 @@ export const DirPlayer = () => {
 
   return (
     <>
-      {contenido.map((cont) => (
+      {contenidos.map((cont) => (
         <div
           className=" embed-responsive embed-responsive-16by9 mb-3 container mt-3 border"
           key={cont._id}

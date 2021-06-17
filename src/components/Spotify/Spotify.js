@@ -4,7 +4,7 @@ import ContenidoContext from "../../context/contenido/ContenidoContext";
 
 export const Spotify = () => {
 
-  const { contenido ,getContenidoPodcast } = useContext(ContenidoContext);
+  const { contenidos ,getContenidoPodcast } = useContext(ContenidoContext);
 
   useEffect(() => {
     getContenidoPodcast();
@@ -15,7 +15,7 @@ export const Spotify = () => {
     <>
       <div className="container mt-4" >
       {
-        contenido.map(contenidos => (
+        contenidos.map(contenidos => (
           <div className="spotify" key={contenidos._id}>
           <iframe
             src={`https://open.spotify.com/embed/episode/${contenidos.url}`}

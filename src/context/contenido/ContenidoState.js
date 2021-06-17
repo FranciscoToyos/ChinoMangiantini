@@ -2,22 +2,26 @@ import React, { useReducer } from "react";
 import clienteAxios from "../../config/axios";
 import ContenidoReducer from "./ContenidoReducer";
 import ContenidoContext from "./ContenidoContext";
+import {CREAR_CONTENIDO,GET_CONTENIDO_PODCAST,GET_CONTENIDO_VIDEOCLIP, GET_CONTENIDO_DIRECTING,  GET_CONTENIDO_CINEMA,DELETE_CONTENIDO, GET_CONTENIDO_ALL} from '../types'
+
+const baseUrl =  'https://chinomangiantini-api.herokuapp.com/api/contenidos/'
 
 const ContenidoState = (props) => {
   const initialState = {
     contenido: [],
   };
+  
 
   const [state, dispatch] = useReducer(ContenidoReducer, initialState);
 
   const getContenidoPodcast = async () => {
     try {
       const resulPodcast = await clienteAxios.get(
-        `http://localhost:3100/api/contenidos/seccion/Podcast`
+        `${baseUrl}/seccion/Podcast`
       );
       // console.log(resulPodcast.data.Resultados);
       dispatch({
-        type: "GET_CONTENIDO_PODCAST",
+        type: GET_CONTENIDO_PODCAST,
         payload: resulPodcast.data.Resultados,
       });
     } catch (err) {
@@ -27,11 +31,11 @@ const ContenidoState = (props) => {
   const getContenidoVideoclip = async () => {
     try {
       const resulVideo = await clienteAxios.get(
-        `http://localhost:3100/api/contenidos/seccion/Videoclip`
+        `${baseUrl}/seccion/Videoclip`
       );
       // console.log(resulVideo);
       dispatch({
-        type: "GET_CONTENIDO_VIDEOCLIP",
+        type: GET_CONTENIDO_VIDEOCLIP,
         payload: resulVideo.data.Resultados,
       });
     } catch (err) {
@@ -41,11 +45,11 @@ const ContenidoState = (props) => {
   const getContenidoDirecting = async () => {
     try {
       const resulDirecting = await clienteAxios.get(
-        `http://localhost:3100/api/contenidos/seccion/Directing`
+        `${baseUrl}/seccion/Directing`
       );
       // console.log(resulDirecting);
       dispatch({
-        type: "GET_CONTENIDO_DIRECTING",
+        type: GET_CONTENIDO_DIRECTING,
         payload: resulDirecting.data.Resultados,
       });
     } catch (err) {
@@ -55,11 +59,11 @@ const ContenidoState = (props) => {
   const getContenidoCinema = async () => {
     try {
       const resulCinema = await clienteAxios.get(
-        `http://localhost:3100/api/contenidos/seccion/Cinematography`
+        `${baseUrl}/seccion/Cinematography`
       );
-      // console.log(resulCinema);
+      // console.log(resulCinema.data);
       dispatch({
-        type: "GET_CONTENIDO_CINEMA",
+        type: GET_CONTENIDO_CINEMA,
         payload: resulCinema.data.Resultados,
       });
     } catch (err) {
@@ -70,27 +74,30 @@ const ContenidoState = (props) => {
   const deleteContenido = async (_id) => {
     try {
       const delcontenido = await clienteAxios.delete(
-        `http://localhost:3100/api/contenidos/${_id}`
+        `${baseUrl}/${_id}`
       );
-      console.log(delcontenido);
+
       dispatch({
-        type: "DELETE_CONTENIDO",
+        type: DELETE_CONTENIDO,
         payload: delcontenido.data._id,
       });
+      console.log(delcontenido);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const crearContenido = async () => {
+  const CrearContenido = async () => {
     try {
-      const crearContenidos = await clienteAxios.post(
-        "http://localhost:3100/api/contenidos/"
+      const CrearContenidos = await clienteAxios.post(
+        `${baseUrl}`
+        
       );
       dispatch({
-        type: "CREAR_CONTENIDO",
-        payload: crearContenidos,
+        type: CREAR_CONTENIDO,
+        payload: CrearContenidos,
       });
+      console.log(CrearContenidos);
     } catch (err) {
       console.log(err);
     }
@@ -99,11 +106,12 @@ const ContenidoState = (props) => {
   const getContenido = async () => {
     try {
       const contenidoAll = await clienteAxios.get(
-        "http://localhost:3100/api/contenidos"
+        `${baseUrl}`
+
       );
-      console.log(contenidoAll);
+      // console.log(contenidoAll.data);
       dispatch({
-        type: "GET_CONTENIDO_ALL",
+        type: GET_CONTENIDO_ALL,
         payload: contenidoAll.data,
       });
     } catch (err) {
@@ -113,14 +121,14 @@ const ContenidoState = (props) => {
   return (
     <ContenidoContext.Provider
       value={{
-        contenido: state.contenido,
+        contenidos: state.contenido,
         getContenidoPodcast,
         getContenidoVideoclip,
         getContenidoDirecting,
         getContenidoCinema,
         getContenido,
         deleteContenido,
-        crearContenido,
+        CrearContenido,
       }}
     >
       {props.children}
